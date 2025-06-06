@@ -16,20 +16,9 @@
       height: 100vh;
       object-fit: cover;
     }
-    #cover {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      cursor: pointer;
-      z-index: 10;
-    }
   </style>
 </head>
 <body>
-  <!-- Fullscreen clickable overlay to trigger audio -->
-  <div id="cover" onclick="startAudio()"></div>
-
   <!-- Background image -->
   <img src="https://media.istockphoto.com/id/657859250/photo/hacker-concept-computer-character-codes-green-text-on-black-background.jpg?s=170667a&w=0&k=20&c=td646RucsA_QBp5UPAKjQ_xRvvCKXCzy6NU54nAE0Uc=" alt="hacker matrix" />
 
@@ -47,17 +36,20 @@
       return result;
     }
 
-    // Update browser tab title every 2 seconds
+    // Change title every 2 seconds
     setInterval(() => {
       document.title = getRandomTitle();
     }, 2000);
 
-    // Play audio on first click
-    function startAudio() {
+    // One-time keypress handler to start audio
+    function onKeydownStartAudio(e) {
       const audio = document.getElementById("bg-audio");
       audio.play();
-      document.getElementById("cover").remove(); // Remove overlay
+      document.removeEventListener('keydown', onKeydownStartAudio); // remove listener
     }
+
+    // Wait for any key press
+    document.addEventListener('keydown', onKeydownStartAudio);
   </script>
 </body>
 </html>
