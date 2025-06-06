@@ -1,8 +1,8 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My Hacker Page</title>
+  <meta charset="UTF-8" />
+  <title>Loading...</title>
   <style>
     html, body {
       margin: 0;
@@ -16,8 +16,23 @@
       object-fit: cover;
     }
   </style>
+  <script>
+    function getRandomTitle(length = 10) {
+      const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+      let result = '';
+      for (let i = 0; i < length; i++) {
+        result += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return result;
+    }
+
+    // Update title every 2 seconds with a new random 10-letter string
+    setInterval(() => {
+      document.title = getRandomTitle();
+    }, 2000);
+  </script>
 </head>
 <body>
-  <img src="https://media.istockphoto.com/id/657859250/photo/hacker-concept-computer-character-codes-green-text-on-black-background.jpg?s=170667a&w=0&k=20&c=td646RucsA_QBp5UPAKjQ_xRvvCKXCzy6NU54nAE0Uc=" alt="hacker matrix">
+  <img src="https://media.istockphoto.com/id/657859250/photo/hacker-concept-computer-character-codes-green-text-on-black-background.jpg?s=170667a&w=0&k=20&c=td646RucsA_QBp5UPAKjQ_xRvvCKXCzy6NU54nAE0Uc=" alt="hacker matrix" />
 </body>
 </html>
