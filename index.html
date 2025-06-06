@@ -8,6 +8,7 @@
       margin: 0;
       padding: 0;
       background-color: black;
+      overflow: hidden;
     }
     img {
       display: block;
@@ -15,9 +16,29 @@
       height: 100vh;
       object-fit: cover;
     }
+    #cover {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      cursor: pointer;
+      z-index: 10;
+    }
   </style>
+</head>
+<body>
+  <!-- Fullscreen clickable overlay to trigger audio -->
+  <div id="cover" onclick="startAudio()"></div>
+
+  <!-- Background image -->
+  <img src="https://media.istockphoto.com/id/657859250/photo/hacker-concept-computer-character-codes-green-text-on-black-background.jpg?s=170667a&w=0&k=20&c=td646RucsA_QBp5UPAKjQ_xRvvCKXCzy6NU54nAE0Uc=" alt="hacker matrix" />
+
+  <!-- Audio element: loop enabled -->
+  <audio id="bg-audio" src="audio.mp3" preload="auto" loop></audio>
+
   <script>
-    function getRandomTitle(length = 10) {
+    // Random title generator
+    function getRandomTitle(length = 20) {
       const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
       let result = '';
       for (let i = 0; i < length; i++) {
@@ -26,13 +47,17 @@
       return result;
     }
 
-    // Update title every 2 seconds with a new random 10-letter string
+    // Update browser tab title every 2 seconds
     setInterval(() => {
       document.title = getRandomTitle();
     }, 2000);
+
+    // Play audio on first click
+    function startAudio() {
+      const audio = document.getElementById("bg-audio");
+      audio.play();
+      document.getElementById("cover").remove(); // Remove overlay
+    }
   </script>
-</head>
-<body>
-  <img src="https://media.istockphoto.com/id/657859250/photo/hacker-concept-computer-character-codes-green-text-on-black-background.jpg?s=170667a&w=0&k=20&c=td646RucsA_QBp5UPAKjQ_xRvvCKXCzy6NU54nAE0Uc=" alt="hacker matrix" />
 </body>
 </html>
