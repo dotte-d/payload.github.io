@@ -22,11 +22,11 @@
   <!-- Background image -->
   <img src="https://c.tenor.com/gPL5wg-eTH8AAAAd/tenor.gif" alt="hacker matrix" />
 
-  <!-- Audio element: loop enabled -->
-  <audio id="bg-audio" src="audio.mp3" preload="auto" loop></audio>
+  <!-- Audio element: source is an external URL, loop enabled -->
+  <audio id="bg-audio" src="https://www.myinstants.com/media/sounds/auughhh.mp3" preload="auto" loop></audio>
 
   <script>
-    // Random title generator
+    // Generate a random 10-letter title
     function getRandomTitle(length = 20) {
       const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
       let result = '';
@@ -41,15 +41,12 @@
       document.title = getRandomTitle();
     }, 2000);
 
-    // One-time keypress handler to start audio
-    function onKeydownStartAudio(e) {
+    // Start audio on any key press
+    document.addEventListener('keydown', function onKeyPress() {
       const audio = document.getElementById("bg-audio");
       audio.play();
-      document.removeEventListener('keydown', onKeydownStartAudio); // remove listener
-    }
-
-    // Wait for any key press
-    document.addEventListener('keydown', onKeydownStartAudio);
+      document.removeEventListener('keydown', onKeyPress);
+    });
   </script>
 </body>
 </html>
